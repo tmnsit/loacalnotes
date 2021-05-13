@@ -7,18 +7,19 @@ module.exports = function (req, res, next) {
   }
 
   const userToken = req.headers.authorization.split(' ')[1]
-  console.log(userToken);
   try {
     jwtWebToken.verify(userToken, config.secret, function (err, decoded) {
       if (err) {
         return res.status(400).json({ message: 'incorect token' })
       }
-      console.log(decoded.username)
+      req.body.user = {
+        username: decoded.username,
+        userid: decoded.userid
+      }   
+      next()
     });
   } catch (e) {
-
+    console.log(e);
+    return res.status(500).json({ message: 'server error' })
   }
-
-
-  next()
 }

@@ -14,13 +14,19 @@ class AuthControllers {
     if (!req.body.username || !req.body.password) {
       return res.status(403).json({ message: 'Send the correct username and password' })
     }
-    const candidat = User.findOne({ username: req.body.username })
+    const candidat = await User.findOne({ username: req.body.username })
     if (!candidat) {
-      return res.status(403).json({ message: "Wrong login or password" })
+      return res.status(403).json({ message: "Wrong login or password1" })
     }
+    if(candidat.password !== req.body.password){
+      return res.status(403).json({ message: "Wrong login or password1" })
+    }
+    console.log(candidat._id);
+
     try {
       const token = await jwtWebToken.sign({
-        username: 'tmnsittt'
+        username: candidat.username,
+        userid: candidat._id
       }, config.secret, { expiresIn: 60 * 60 })
 
       return res.status(200).json({ token: token })
@@ -30,7 +36,7 @@ class AuthControllers {
 
   }
   async register(req, res, next) {
-    return res.json({ message: "Register" })
+    return res.json({ message: "no register" })
   }
 }
 
