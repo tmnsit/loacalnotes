@@ -28,18 +28,11 @@
 
 <script>
 export default {
-  data: () => ({
-    menuItems: [
-      { id: 1, title: "Home", link: "/" },
-      { id: 2, title: "Categories", link: "/categories" },
-      { id: 3, title: "Politics", link: "/blog" },
-      { id: 4, title: "Business", link: "/categories" },
-      { id: 5, title: "Health", link: "/categories" },
-      { id: 6, title: "Design", link: "/categories" },
-      { id: 7, title: "Sport", link: "/categories" },
-      { id: 8, title: "Contact", link: "/contacts" },
-    ],
-  }),
+  computed: {
+    menuItems: function () {
+      return this.$store.getters["menu/getMenuItems"];
+    },
+  },
 };
 </script>
 

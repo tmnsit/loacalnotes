@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:class="{ 'offcanvas-menu': menuState }">
     <!-- elements-mobile-menu  -->
     <elements-mobile-menu />
     <!-- /.elements-mobile-menu -->
@@ -25,3 +25,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    menuState: function () {
+      return this.$store.getters["menu/getMenuState"];
+    },
+  },
+};
+</script>

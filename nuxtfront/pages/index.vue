@@ -84,6 +84,11 @@
           <div class="col-lg-8">
             <div class="row">
               <div class="col-12">
+                <div>
+                  <h1>
+                    {{ posts }}
+                  </h1>
+                </div>
                 <div class="section-title">
                   <h2>Editor's Pick</h2>
                 </div>
@@ -775,6 +780,17 @@
 
 <script>
 export default {
+  async asyncData() {
+    let asDate = "dont posts";
+    try {
+      const resp = await fetch("http://127.0.0.1:4456/api/get-users");
+      const result = await resp.json();
+      asDate = result.message;
+    } catch (e) {
+      console.log(e);
+    }
+    return { posts: asDate };
+  },
   data: () => ({
     pageTitle: "Home",
     pageH1: "Home page",

@@ -2,7 +2,6 @@ export default {
 
 
   serverMiddleware: [
-    // { path: '/api', handler: '~/api' }
   ],
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -56,7 +55,6 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxt/http'
   ],
   telemetry: false,
 
